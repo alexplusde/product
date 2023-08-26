@@ -1,62 +1,83 @@
-# Blaupause - Dieses Repository kopieren, anpassen, AddOn-Entwicklung für REDAXO starten
+# Produktverwaltung für REDAXO 5.15 & YForm 4.x
 
-Vorlage für REDAXO-Addons für einen schnelleren Start bei der Addon-Entwicklung.
-
-1. https://github.com/alexplusde/blaupause/archive/refs/heads/main.zip ZIP der aktuellen Vorlage herunterladen oder direkt in GitHub ein Repo auf Basis von `alexplusde/blaupause` erstellen: https://github.com/new/import und dort `https://github.com/alexplusde/blaupause.git` angeben.
-2. Mit "Suchen und Ersetzen" alles, was `blaupause` heißt, durch den Namen deines Addons ersetzen, z.B. `supi-dupi-kalender`, und speichern. Sowohl Dateinamen, als auch Dateiinhalte. 
-3. Alles löschen, was du aktuell nicht brauchst (oder für später auskommentiert lassen)
+Mit diesem Addon können Produkte anhand von YForm und YOrm im Backend verwaltet und im Frontend ausgegeben werden. Auf Wunsch auch mehrsprachig.
 
 ## Features
 
-### `package.yml`
+* Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
+* Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
+* Flexibel: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url)
+* Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
 
-Bei Bedarf Abhängigkeiten von REDAXO-AddOns (sog. packages) eintragen, Backend-Seiten aus oder einblenden, vordefinierte Konfigurationswerte setzen.
+> **Tipp:** Produktverwaltung arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
 
-### `boot.php`
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von product](https://github.com/alexplusde/product) bei. Oder **unterstütze dieses Addon:** Mit einer [Spende oder Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
-Gängige Code-Beispiele wie der Syntax zum Überprüfen einer Addon-Installation, der Unterscheidung zwischen Front- und Backend, dem Registrieren eigener YForm-Dataset-Klasen.
+## Installation
 
-### `install.php`
+Im REDAXO-Installer das Addon `product` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Produkte` sichtbar.
 
-Gängige Code-Beispiele zum Installieren von YForm-Tablesets, Meta-Infofeldern und dem Verwenden von Extension Points, Cronjobs u.a.
+## Nutzung im Frontend
 
-### `dataedit.php` für YForm-Datentabellen
+### Die Klasse `product`
 
-Dein Addon nutzt YForm als Ausgangsbasis? Nutze YForm-Tabellen innerhalb deiner Addon-Seiten via https://friendsofredaxo.github.io/tricks/addons/yform/im-addon
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_product` zu.
 
-### `update.php`
+#### Beispiel-Ausgabe eines Produkts
 
-Gängige Code-Beispiele, die in Abhängigkeit der Vorgänger-Version deines Addons ausgeführt werden.
+```php
+dump(product::get(3)); // Produkt mit der id=3
+```
 
-### `uninstall.php`
+```php
+dump(product::get(3)->getCategory()); // Kategorie zum Produkt mit der id=3
+```
 
-Alle Code-Beispiele, die du in der `install.php` nutzt, können hier wieder rückkgängig gemacht werden.
+### Die Klasse `product_category`
 
-### `lib/blaupause.php`
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_product_category` zu.
 
-Liefere passende YOrm Dataset-Methoden mit deinem Addon. Diese kannst du dir ganz einfach mithilfe von <https://github.com/alexplusde/ymca> erstellen lassen, wenn dein Tableset soweit fertig ist.
+#### Beispiel-Ausgabe einer Kategorie
 
-### `lang/`
+```php
+dump(product_category::get(3)); // Produkt-Kategorie mit der id=3
+```
 
-Blaupause für deine eigene Sprachdatei. Beginne die Addon-Entwicklung direkt so, dass weitere Sprachen ohne Anpassungen ergänzt werden können.
+## Nutzung im Backend: Die Produktverwaltung
 
-### `fragmente/`
+### Die Tabelle `rex_category`
 
-Blaupause für die Nutzung eigener Fragmente.
+In der Produkt-Tabelle werden einzelne Daten festgehalten. Nach der Installation von `product` stehen folgende Felder zur Verfügung:
 
-### Docs-Seite
+| Typ      | Typname             | Name                | Bezeichnung       |
+|----------|---------------------|---------------------|-------------------|
+| value    | text                | name                | Name              |
+| validate | empty               | name                |                   |
+| value    | textarea            | description         | Beschreibung      |
 
-Passe diese README.md-Datei an und spiele sie als Hilfe-Seite zu deinem Addon aus. Halte dich an die Struktur dieser README.md-Datei für deine eigenen Addons, indem du die wichtigsten Funktionen, Klassen und Methoden sowie den Installationsprozess und die Funktionsweise erklärst. Mit Verweis auf die Autoren, Projekt-Lead und Credits.
 
-### Einstellungs-Seite
+### Die Tabelle `rex_product_category`
 
-Beginne mit einem Konfigurations-Formular, das bereits best practice in REDAXO umsetzt - mit Links zu den wichtigsten API-Docs.
+Die Tabelle Kategorien kann frei verändert werden, um Produkte zu gruppieren (bspw. nach Marken) oder zu Verschlagworten (als Tags).
+
+| Typ      | Typname             | Name    | Bezeichnung |
+|----------|---------------------|---------|-------------|
+| value    | text                | name    | Titel       |
+| validate | unique              | name    |             |
+| validate | empty               | name    |             |
+| value    | be_media            | image   | Bildmotiv   |
+| value    | choice              | status  | Status      |
+| value    | be_manager_relation | date_id | Produkte    |
+
+## Import / Export
+
+Produkte basiert auf YForm, nutze die üblichen Import/Export-Funktionen als CSV.
 
 ## Lizenz
 
-MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/blaupause/blob/master/LICENSE.md)  
+MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/product/blob/master/LICENSE.md)  
 
-## Autoren
+## Autor
 
 **Alexander Walther**  
 http://www.alexplus.de  
@@ -66,3 +87,5 @@ https://github.com/alexplusde
 [Alexander Walther](https://github.com/alexplusde)
 
 ## Credits
+
+product basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  

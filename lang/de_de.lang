@@ -1,16 +1,33 @@
-blaupause_title = Blaupause
+product = Produkte
+product_settings = Einstellungen
 
-blaupause_table = Blaupause
-blaupause_settings = Einstellungen
-blaupause_docs = Hilfe
+product_table = 📦 Produkte
+product_category_table = 📦 Kategorien 
+product_variant_table = 📦 Varianten
+product_category = Kategorien
+product_variant = Varianten
+product_category_name = Name
+product_category_prio = Reihenfolge
+product_category_product = Produkte
+product_createdate = Erstellt am...
+product_description = Beschreibung
+product_image = Bild 
+product_is_new = Neu 
+product_name = Name
+product_prio = Reihenfolge
+product_status = Status
+product_status_online = Veröffentlicht
+product_status_offline = Entwurf
+product_teaser = Teaser
+product_updatedate = Geändert am...
+product_variant_ids = Varianten
+product_variant_image = Bild
+product_variant_menge = Menge
+product_variant_name =  Name
+product_variant_prio = Reihenfolge
+product_variant_product_id = Produkt
+product_variant_status = Status
+product_variant_status_online = Veröffentlicht
+product_variant_status_offline = Entwurf
 
-# FriendsOfREDAXO-Addons können bei YTraduco zur Übersetzung eingereicht werden
-
-# Konfigurationsformulare
-blaupause_config = Einstellungen
-blaupause_config_mytextfield_label = Test-Feld
-blaupause_config_mytextfield_notice = Notiz, die etwas erklärt und bspw. einen Standardwert nennt. Hier: <code>Test</code>
-
-# YForm Tabellen-Übersetzung
-blaupause_table_name_label = Name
-blaupause_table_name_notice = Notiz, die etwas erklärt und auch einen Beispielwert nennen kann, z.B.: <code>Mein Name</code> 
+product_docs = Hilfe
