@@ -6,12 +6,10 @@ Mit diesem Addon können Produkte anhand von YForm und YOrm im Backend verwaltet
 
 * Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
 * Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
-* Flexibel: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url)
+* Flexibel: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url) und zu [Sprog](https://github.com/tbaddade/redaxo_sprog)
 * Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
 
-> **Tipp:** Produktverwaltung arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
-
-> **Steuere eigene Verbesserungen** dem [GitHub-Repository von product](https://github.com/alexplusde/product) bei. Oder **unterstütze dieses Addon:** Mit einer [Spende oder Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von product](https://github.com/alexplusde/product) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
 ## Installation
 
@@ -23,51 +21,88 @@ Im REDAXO-Installer das Addon `product` herunterladen und installieren. Anschlie
 
 Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_product` zu.
 
-#### Beispiel-Ausgabe eines Produkts
+#### Code-Beispiele für die Modulausgabe
 
 ```php
+$products_all = product::query()->find(); // Alle Produkte
+
+foreach($products as $product) {
+    $category = $product->getCategory();
+    $variants = $product->getVariants();
+
+    echo $product->getName();
+    echo $product->getStatus();
+    echo $product->getImage();
+    echo $product->getImage();
+    echo $product->getTeaser();
+    echo $product->getDescription();
+    echo $product->getIsNew();
+    // echo $product->getValue('dein-feld');
+
+    echo $category->getName();
+    // echo $category->getValue('dein-feld');
+
+    foreach($variants as $variant) {
+        echo $variant->getName();
+        echo $variant->getImage();
+        echo $variant->getStatus();
+        // echo $variant->getValue('dein-feld');
+
+    }
+}
+
+dump(product_category::get(3)); // Kategorie mit der id=3
 dump(product::get(3)); // Produkt mit der id=3
+dump(product_variant::get(3)); // Variante mit der id=3
 ```
+
+Um zu filtern oder zu sortieren, nutze die YOrm-spezifischen Query-Methoden:
 
 ```php
-dump(product::get(3)->getCategory()); // Kategorie zum Produkt mit der id=3
+$products_online = product::query()->where('status', 1)->order('name')->find(); // Alle Produkte
 ```
 
-### Die Klasse `product_category`
-
-Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_product_category` zu.
-
-#### Beispiel-Ausgabe einer Kategorie
-
-```php
-dump(product_category::get(3)); // Produkt-Kategorie mit der id=3
-```
-
-## Nutzung im Backend: Die Produktverwaltung
-
-### Die Tabelle `rex_category`
-
-In der Produkt-Tabelle werden einzelne Daten festgehalten. Nach der Installation von `product` stehen folgende Felder zur Verfügung:
-
-| Typ      | Typname             | Name                | Bezeichnung       |
-|----------|---------------------|---------------------|-------------------|
-| value    | text                | name                | Name              |
-| validate | empty               | name                |                   |
-| value    | textarea            | description         | Beschreibung      |
-
+## Nutzung im Backend: Die Produkteverwaltung
 
 ### Die Tabelle `rex_product_category`
 
-Die Tabelle Kategorien kann frei verändert werden, um Produkte zu gruppieren (bspw. nach Marken) oder zu Verschlagworten (als Tags).
+In der Kategorien-Tabelle werden einzelne Kategorien erstellt. Erweitere das Formular im Backend um eigene Felder über den YForm Table Manager, z.B. Icons, Bilder, zusätzliche Beschreibungen, etc.
 
-| Typ      | Typname             | Name    | Bezeichnung |
-|----------|---------------------|---------|-------------|
-| value    | text                | name    | Titel       |
-| validate | unique              | name    |             |
-| validate | empty               | name    |             |
-| value    | be_media            | image   | Bildmotiv   |
-| value    | choice              | status  | Status      |
-| value    | be_manager_relation | date_id | Produkte    |
+### Die Tabelle `rex_product`
+
+In der Produkte-Tabelle werden einzelne Produkte festgehalten. Erweitere das Formular im Backend um eigene Felder über den YForm Table Manager.
+
+### Die Tabelle `rex_product_variant`
+
+In der Varianten-Tabelle können einzelne Varianten von Produkten erstellt werden. Erweitere das Formular im Backend um eigene Felder über den YForm Table Manager, z.B. eigene Artikelnummern und varianten-spezifische Eigenschaften wie bspw. Farben, Verfügbarkeit,...
+
+## Kombination mit URL-Profilen
+
+Für Kategorien und Produkte können passende URL-Profile angelegt werden, sodass die Generierung von Kategorie- oder Produktdetailseiten automatisiert werden.
+
+In diesem Beispiel wird ein Profil mit dem Schlüssel `product-id` vorausgesetzt. Nutze folgenden Code in der Template- oder Modulausgabe.
+
+```php
+use Url\Url;
+
+$manager = Url::resolveCurrent();
+
+if ($manager) {
+    $product = product::get($manager->getDatasetId());
+    if ($product) {
+        // Detailseite des Produkts
+        dump($movie);
+    }
+} else {
+    $products = product::query()->find();
+    if (count($products_all)) {
+        // Übersichtsseite aller Produkte
+        foreach ($products as $product) {
+            echo '<a href="' . rex_getUrl('', '', ['product-id' => $product->getId()]) . '">' . $product->getName() . '</a>';
+        }
+    }
+}
+```
 
 ## Import / Export
 
@@ -80,8 +115,8 @@ MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/product/blob/master
 ## Autor
 
 **Alexander Walther**  
-http://www.alexplus.de  
-https://github.com/alexplusde  
+<http://www.alexplus.de>  
+<https://github.com/alexplusde>  
 
 **Projekt-Lead**  
 [Alexander Walther](https://github.com/alexplusde)
