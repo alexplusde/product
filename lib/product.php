@@ -39,7 +39,7 @@ class product extends \rex_yform_manager_dataset
     }
                 
     /** @api */
-    public function getIsNew() : ?bool
+    public function isNew() : ?bool
     {
         return $this->getValue("is_new");
     }

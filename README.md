@@ -36,7 +36,7 @@ foreach($products as $product) {
     echo $product->getImage();
     echo $product->getTeaser();
     echo $product->getDescription();
-    echo $product->getIsNew();
+    echo $product->isNew();
     // echo $product->getValue('dein-feld');
 
     echo $category->getName();
@@ -98,6 +98,9 @@ if ($manager) {
     if (count($products_all)) {
         // Übersichtsseite aller Produkte
         foreach ($products as $product) {
+            if($product->getStatus() < 1) {
+                continue;
+            }
             echo '<a href="' . rex_getUrl('', '', ['product-id' => $product->getId()]) . '">' . $product->getName() . '</a>';
         }
     }
