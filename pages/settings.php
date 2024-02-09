@@ -1,5 +1,7 @@
 <?php
 
+echo rex_view::title(rex_i18n::msg('product'));
+
 $addon = rex_addon::get('product');
 
 $form = rex_config_form::factory($addon->getName());

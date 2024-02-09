@@ -1,4 +1,4 @@
-# Produktverwaltung für REDAXO 5.15 & YForm 4.x
+# Produktverwaltung für REDAXO 5.x & YForm 4.x
 
 Mit diesem Addon können Produkte anhand von YForm und YOrm im Backend verwaltet und im Frontend ausgegeben werden. Auf Wunsch auch mehrsprachig.
 
