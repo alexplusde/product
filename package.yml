@@ -39,7 +39,6 @@ page:
             perm: admin
         docs:
             title: translate:product_docs
-            subPath: README.md
             icon: rex-icon fa-info-circle
             itemclass: pull-right
             perm: product[docs]
