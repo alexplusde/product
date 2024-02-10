@@ -18,6 +18,11 @@ $select = $field->getSelect();
 $select->addOption('Ja', 1);
 $select->addOption('Nein', 0);
 
+/* WYSIWYG Editor festlegen */
+$field = $form->addInputField('text', 'editor', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('product_editor'));
+$field->setNotice('z.B. <code>class="form-control redactor-editor--default"</code>');
+
 $fragment = new rex_fragment();
 $fragment->setVar('class', 'edit', false);
 $fragment->setVar('title', $addon->i18n('product_settings'), false);

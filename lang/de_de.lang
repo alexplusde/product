@@ -31,6 +31,8 @@ product_variant_status = Status
 product_variant_status_online = Veröffentlicht
 product_variant_status_offline = Entwurf
 
+product_editor = WYSIWYG-Editor
+
 product_docs = Docs
 
 product_docs_a_intro = Einleitung

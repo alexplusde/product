@@ -6,21 +6,23 @@ use rex_yform_manager_dataset;
 use product;
 use product_category;
 use product_variant;
+use rex_extension;
+use rex_be_controller;
 
 if(1 !== \rex_config::get('product', 'use_own_model')) {
-rex_yform_manager_dataset::setModelClass(
-    'rex_product',
-    product::class
-);
-rex_yform_manager_dataset::setModelClass(
-    'rex_product_category',
-    product_category::class
-);
+    rex_yform_manager_dataset::setModelClass(
+        'rex_product',
+        product::class
+    );
+    rex_yform_manager_dataset::setModelClass(
+        'rex_product_category',
+        product_category::class
+    );
 
-rex_yform_manager_dataset::setModelClass(
-    'rex_product_variant',
-    product_variant::class
-);
+    rex_yform_manager_dataset::setModelClass(
+        'rex_product_variant',
+        product_variant::class
+    );
 }
 
 \rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
@@ -47,8 +49,7 @@ rex_yform_manager_dataset::setModelClass(
 
         $list->setColumnFormat(
             'name',
-            'custom', 
-
+            'custom',
             static function ($a) {
                 $_csrf_key = \rex_yform_manager_table::get('rex_product')->getCSRFKey();
                 $token = \rex_csrf_token::factory($_csrf_key)->getUrlParams();
@@ -84,8 +85,7 @@ rex_yform_manager_dataset::setModelClass(
 
         $list->setColumnFormat(
             'name',
-            'custom', 
-
+            'custom',
             static function ($a) {
                 $_csrf_key = \rex_yform_manager_table::get('rex_product_category')->getCSRFKey();
                 $token = \rex_csrf_token::factory($_csrf_key)->getUrlParams();
@@ -121,8 +121,7 @@ rex_yform_manager_dataset::setModelClass(
         
         $list->setColumnFormat(
             'name',
-            'custom', 
-
+            'custom',
             static function ($a) {
                 $_csrf_key = \rex_yform_manager_table::get('rex_product_variant')->getCSRFKey();
                 $token = \rex_csrf_token::factory($_csrf_key)->getUrlParams();
@@ -139,3 +138,12 @@ rex_yform_manager_dataset::setModelClass(
         );
     }
 });
+
+
+if (\rex::isBackend() && 'product/product' == rex_be_controller::getCurrentPage() || 'yform/manager/data_edit' == rex_be_controller::getCurrentPage()) {
+    rex_extension::register('OUTPUT_FILTER', static function (\rex_extension_point $ep) {
+        $suchmuster = 'class="###product-settings-editor###"';
+        $ersetzen = \rex_config::get('product', 'editor');
+        $ep->setSubject(str_replace($suchmuster, $ersetzen, $ep->getSubject()));
+    });
+}
