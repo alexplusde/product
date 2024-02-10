@@ -45,3 +45,4 @@ page:
 
 default_config:
     'default_thumbnail': "product_fallback_image.png"
+    'use_own_model': 0
