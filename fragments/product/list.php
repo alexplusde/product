@@ -15,9 +15,9 @@ $products = $this->getVar('products');
             <div class="col">
                 <?php
                 $fragment = new rex_fragment();
-                $fragment->setVar('product', $product);
-                echo $fragment->parse('product/list-entry.php');
-                ?>
+            $fragment->setVar('product', $product);
+            echo $fragment->parse('product/list-entry.php');
+            ?>
             </div>
         <?php endforeach ?>
     </div>

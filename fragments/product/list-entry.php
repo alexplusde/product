@@ -28,8 +28,8 @@ $product = $this->getVar('product');
     <?php if ('' !== $product->getImage()) : ?>
     <?php
     $media = rex_media::get($product->getImage());
-    $mediaUrl = rex_media_manager::getUrl('rex_media_medium', $product->getImage());
-    ?>
+        $mediaUrl = rex_media_manager::getUrl('rex_media_medium', $product->getImage());
+        ?>
         <?php if ($media) : ?>
             <div class="col-auto d-none d-lg-block">
                 <img src="<?= $mediaUrl ?>" alt="<?= htmlspecialchars($media->getTitle()) ?>" class="h-100 object-fit-cover" width="200"/>

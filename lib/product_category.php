@@ -13,7 +13,8 @@ use rex_yform_manager_collection;
  * Diese Klasse repräsentiert eine Produktkategorie in der Anwendung.
  * Sie erbt von der rex_yform_manager_dataset Klasse und bietet Methoden zum Abrufen und Setzen von Kategorieinformationen.
  */
- class product_category extends rex_yform_manager_dataset {
+class product_category extends rex_yform_manager_dataset
+{
 
     /**
      * @api
@@ -21,7 +22,8 @@ use rex_yform_manager_collection;
      *
      * Gibt die Priorität der Kategorie zurück.
      */
-    public function getPrio() : ?int {
+    public function getPrio() : ?int
+    {
         return $this->getValue("prio");
     }
 
@@ -32,7 +34,8 @@ use rex_yform_manager_collection;
      *
      * Setzt die Priorität der Kategorie.
      */
-    public function setPrio(int $value) : self {
+    public function setPrio(int $value) : self
+    {
         $this->setValue("prio", $value);
         return $this;
     }
@@ -43,7 +46,8 @@ use rex_yform_manager_collection;
      *
      * Gibt den Namen der Kategorie zurück.
      */
-    public function getName() : ?string {
+    public function getName() : ?string
+    {
         return $this->getValue("name");
     }
 
@@ -54,7 +58,8 @@ use rex_yform_manager_collection;
      *
      * Setzt den Namen der Kategorie.
      */
-    public function setName(mixed $value) : self {
+    public function setName(mixed $value) : self
+    {
         $this->setValue("name", $value);
         return $this;
     }
@@ -65,7 +70,8 @@ use rex_yform_manager_collection;
      *
      * Gibt die Produkte der Kategorie zurück.
      */
-    public function getProducts() : ?rex_yform_manager_collection {
+    public function getProducts() : ?rex_yform_manager_collection
+    {
         return $this->getRelatedCollection("product");
     }
 
