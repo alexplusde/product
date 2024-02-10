@@ -7,6 +7,7 @@ use product;
 use product_category;
 use product_variant;
 
+if(1 !== \rex_config::get('product', 'use_own_model')) {
 rex_yform_manager_dataset::setModelClass(
     'rex_product',
     product::class
@@ -20,6 +21,7 @@ rex_yform_manager_dataset::setModelClass(
     'rex_product_variant',
     product_variant::class
 );
+}
 
 \rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
 

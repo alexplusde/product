@@ -11,6 +11,13 @@ $field->setPreview(1);
 $field->setTypes('jpg,gif,png');
 $field->setLabel('Vorschau-Bild');
 
+/* Select-Auswahl, ob eigene Model Class verwendet werden soll */
+$field = $form->addSelectField('use_own_model');
+$field->setLabel('Eigene Model-Klasse verwenden?');
+$select = $field->getSelect();
+$select->addOption('Ja', 1);
+$select->addOption('Nein', 0);
+
 $fragment = new rex_fragment();
 $fragment->setVar('class', 'edit', false);
 $fragment->setVar('title', $addon->i18n('product_settings'), false);
