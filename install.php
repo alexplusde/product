@@ -18,15 +18,15 @@ if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
     rex_yform_manager_table_api::importTablesets(rex_file::get(rex_path::addon(rex_addon::get('product')->getName(), 'install/rex_product_tableset.json')));
 }
 
-if (!rex_media::get('product_entry_fallback_image.png')) {
+if (!rex_media::get('product_fallback_image.png')) {
 
-    rex_file::copy(rex_path::addon('product', '/install/product_entry_fallback_image.png'), rex_path::media('product_entry_fallback_image.png'));
+    rex_file::copy(rex_path::addon('product', '/install/product_fallback_image.png'), rex_path::media('product_fallback_image.png'));
     $data = [];
     $data['title'] = 'Aktuelles - Fallback-Image';
     $data['category_id'] = 0;
     $data['file'] = [
-        'name' => 'product_entry_fallback_image.png',
-        'path' => rex_path::media('product_entry_fallback_image.png'),
+        'name' => 'product_fallback_image.png',
+        'path' => rex_path::media('product_fallback_image.png'),
     ];
 
     rex_media_service::addMedia($data, false);
