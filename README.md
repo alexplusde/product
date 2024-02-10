@@ -135,4 +135,4 @@ MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/product/blob/master
 
 ## Credits
 
-product basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  
+`product` basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)
