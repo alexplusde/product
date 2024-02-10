@@ -69,4 +69,25 @@ use rex_yform_manager_collection;
         return $this->getRelatedCollection("product");
     }
 
+
+    /**
+     * Gibt die URL des Eintrags zurück.
+     * Returns the URL of the entry.
+     *
+     * @param string $profile Das Profil, das für die URL-Erstellung verwendet wird. Standardmäßig 'product-category-id'. / The profile used for URL creation. Defaults to 'product-category-id'.
+     * @return string Die URL des Eintrags oder ein leerer String, wenn keine URL gefunden wurde. / The URL of the entry or an empty string if no URL was found.
+     *
+     * Beispiel / Example:
+     * $url = $product->getUrl('product-category-id');
+     *
+     * @api
+     */
+    public function getUrl(string $profile = 'product-category-id'): string
+    {
+        if ($url = rex_getUrl(null, null, [$profile => $this->getId()])) {
+            return $url;
+        }
+        return '';
+    }
+
 }
