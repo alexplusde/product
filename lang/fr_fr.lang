@@ -32,3 +32,11 @@ product_variant_status_online = Publié
 product_variant_status_offline = Brouillon
 
 product_docs = Aide
+
+product_docs_a_intro = Einleitung
+product_docs_d_example = Beispiele
+product_docs_product = Produkte
+product_docs_product_category = Kategorien
+product_docs_product_variant = Varianten
+product_docs_url = URL
+product_docs_settings = Einstellungen
