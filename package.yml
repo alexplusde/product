@@ -22,7 +22,7 @@ page:
     subpages: 
         category:
             title: translate:product_category
-            icon: rex-icon fa-cube
+            icon: rex-icon fa-tags
             perm: product[category]
         product:
             title: translate:product
@@ -30,7 +30,7 @@ page:
             perm: product[product]
         variant:
             title: translate:product_variant
-            icon: rex-icon fa-cube
+            icon: rex-icon fa-cubes
             perm: product[variant]
         settings:
             title: translate:product_settings
