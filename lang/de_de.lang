@@ -31,7 +31,7 @@ product_variant_status = Status
 product_variant_status_online = Veröffentlicht
 product_variant_status_offline = Entwurf
 
-product_docs = Hilfe
+product_docs = Docs
 
 product_docs_a_intro = Einleitung
 product_docs_d_example = Beispiele
