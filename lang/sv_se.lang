@@ -1,0 +1,34 @@
+product = Produkter
+product_settings = Inställningar
+product_title = Produkter
+
+product_table = 📦 Produkter
+product_category_table = 📦 Kategorier 
+product_variant_table = 📦 Varianter
+product_category = Kategorier
+product_variant = Varianter
+product_category_name = Namn
+product_category_prio = Ordning
+product_category_product = Produkter
+product_createdate = Skapad den...
+product_description = Beskrivning
+product_image = Bild 
+product_is_new = Ny 
+product_name = Namn
+product_prio = Ordning
+product_status = Status
+product_status_online = Publicerad
+product_status_offline = Utkast
+product_teaser = Teaser
+product_updatedate = Ändrad den...
+product_variant_ids = Varianter
+product_variant_image = Bild
+product_variant_menge = Mängd
+product_variant_name =  Namn
+product_variant_prio = Ordning
+product_variant_product_id = Produkt
+product_variant_status = Status
+product_variant_status_online = Publicerad
+product_variant_status_offline = Utkast
+
+product_docs = Hjälp

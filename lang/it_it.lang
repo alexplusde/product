@@ -1,0 +1,34 @@
+product = Prodotti
+product_settings = Impostazioni
+product_title = Prodotti
+
+product_table = 📦 Prodotti
+product_category_table = 📦 Categorie 
+product_variant_table = 📦 Varianti
+product_category = Categorie
+product_variant = Varianti
+product_category_name = Nome
+product_category_prio = Ordine
+product_category_product = Prodotti
+product_createdate = Creato il...
+product_description = Descrizione
+product_image = Immagine 
+product_is_new = Nuovo 
+product_name = Nome
+product_prio = Ordine
+product_status = Stato
+product_status_online = Pubblicato
+product_status_offline = Bozza
+product_teaser = Anteprima
+product_updatedate = Aggiornato il...
+product_variant_ids = Varianti
+product_variant_image = Immagine
+product_variant_menge = Quantità
+product_variant_name =  Nome
+product_variant_prio = Ordine
+product_variant_product_id = Prodotto
+product_variant_status = Stato
+product_variant_status_online = Pubblicato
+product_variant_status_offline = Bozza
+
+product_docs = Aiuto
