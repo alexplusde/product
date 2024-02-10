@@ -251,7 +251,7 @@ class product extends \rex_yform_manager_dataset
      *
      * Gibt die IDs der Varianten des Produkts zurück.
      */
-    public function getVariantIds() : ?rex_yform_manager_collection
+    public function getVariants() : ?rex_yform_manager_collection
     {
         return $this->getRelatedCollection("variant_ids");
     }
