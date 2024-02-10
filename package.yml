@@ -5,10 +5,10 @@ supportpage: https://github.com/alexplusde/product/
 
 requires:
     php:
-        version: '>7.3,<9'
-    redaxo: ^5.10
+        version: '>8.1,<9'
+    redaxo: ^5.16
     packages:
-        yform: ">=3.4"
+        yform: "^4.0.0"
         yform_field: ">1"
 
 
@@ -44,3 +44,4 @@ page:
             perm: product[docs]
 
 default_config:
+    'default_thumbnail': "product_fallback_image.png"
