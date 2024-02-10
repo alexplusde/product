@@ -2,6 +2,8 @@
 
 Für Kategorien und Produkte können passende URL-Profile angelegt werden, sodass die Generierung von Kategorie- oder Produktdetailseiten automatisiert werden.
 
+Wenn das URL-Addon installiert und aktiviert ist, wird bei der Installation des Addons `product` automatisch ein URL-Profil `product-id` und ein URL-Profil `product-category-id` angelegt.
+
 In diesem Beispiel wird ein Profil mit dem Schlüssel `product-id` vorausgesetzt. Nutze folgenden Code in der Template- oder Modulausgabe.
 
 ```php
