@@ -96,7 +96,7 @@ class product extends \rex_yform_manager_dataset
     {
         $image = $this->getValue("image");
         $default_image = rex_config::get('product', 'default_thumbnail');
-        if(!image) {
+        if(!$image) {
             return $default_image;
         }
         if($asMedia) {
