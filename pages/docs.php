@@ -10,7 +10,7 @@ foreach (glob(rex_addon::get('product')->getPath('docs') . '/*.md') ?: [] as $fi
     $mdFiles[mb_substr(basename($file), 0, -3)] = $file;
 }
 
-$currentMDFile = rex_request('mdfile', 'string', '01_intro');
+$currentMDFile = rex_request('mdfile', 'string', '01_a_intro');
 if (!array_key_exists($currentMDFile, $mdFiles)) {
     $currentMDFile = '01_intro';
 }
