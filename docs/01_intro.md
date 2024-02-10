@@ -1,4 +1,4 @@
-# Staff - Mitarbeiter verwalten
+# Produkte verwalten
 
 Mit diesem Addon können Produkte anhand von YForm und YOrm im Backend verwaltet und im Frontend ausgegeben werden. Auf Wunsch auch mehrsprachig.
 

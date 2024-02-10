@@ -1,5 +1,9 @@
 <?php
 
+namespace alexplusde\product;
+
+use rex_yform_manager_dataset;
+
 rex_yform_manager_dataset::setModelClass(
     'rex_product',
     product::class
