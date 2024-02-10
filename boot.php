@@ -3,6 +3,9 @@
 namespace alexplusde\product;
 
 use rex_yform_manager_dataset;
+use product;
+use product_category;
+use product_variant;
 
 rex_yform_manager_dataset::setModelClass(
     'rex_product',
