@@ -2,6 +2,7 @@
 
 namespace alexplusde\product;
 
+use rex_config;
 use rex_yform_manager_dataset;
 use rex_yform_manager_collection;
 use rex_media;
@@ -14,7 +15,8 @@ use rex_media;
  * Diese Klasse repräsentiert ein Produkt in der Anwendung.
  * Sie erbt von der rex_yform_manager_dataset Klasse und bietet Methoden zum Abrufen und Setzen von Produktinformationen.
  */
-class product extends \rex_yform_manager_dataset {
+class product extends \rex_yform_manager_dataset
+{
 
     /* Name */
 
@@ -24,7 +26,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt den Namen des Produkts zurück.
      */
-    public function getName() : ?string {
+    public function getName() : ?string
+    {
         return $this->getValue("name");
     }
 
@@ -35,7 +38,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt den Namen des Produkts.
      */
-    public function setName(mixed $value) : self {
+    public function setName(mixed $value) : self
+    {
         $this->setValue("name", $value);
         return $this;
     }
@@ -48,7 +52,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt den Status des Produkts zurück.
      */
-    public function getStatus() : mixed {
+    public function getStatus() : mixed
+    {
         return $this->getValue("status");
     }
 
@@ -59,7 +64,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt den Status des Produkts.
      */
-    public function setStatus(mixed $param) : self {
+    public function setStatus(mixed $param) : self
+    {
         $this->setValue("status", $param);
         return $this;
     }
@@ -72,7 +78,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt die Kategorie des Produkts zurück.
      */
-    public function getCategory() : ?rex_yform_manager_dataset {
+    public function getCategory() : ?rex_yform_manager_dataset
+    {
         return $this->getRelatedDataset("category");
     }
 
@@ -85,11 +92,24 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt das Bild des Produkts zurück. Wenn $asMedia true ist, wird das Bild als rex_media Objekt zurückgegeben.
      */
-    public function getImage(bool $asMedia = false) : ?string {
-        if($asMedia) {
-            return rex_media::get($this->getValue("image"));
+    public function getImage(bool $asMedia = false) : ?string
+    {
+        $image = $this->getValue("image");
+        $default_image = rex_config::get('product', 'default_thumbnail');
+        if(!image) {
+            return $default_image;
         }
-        return $this->getValue("image");
+        if($asMedia) {
+            $media = rex_media::get($image);
+            if(!$media) {
+                $media = rex_media::get($default_image);
+                if(!$media) {
+                    return null;
+                }
+            }
+            return $media;
+        }
+        return $image;
     }
 
     /**
@@ -99,7 +119,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt das Bild des Produkts. Wenn das Bild existiert, wird es gesetzt.
      */
-    public function setImage(string $filename) : self {
+    public function setImage(string $filename) : self
+    {
         if(rex_media::get($filename)) {
             $this->getValue("image", $filename);
         }
@@ -115,7 +136,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt den Teaser des Produkts zurück. Wenn $asPlaintext true ist, wird der Teaser als reiner Text ohne HTML-Tags zurückgegeben.
      */
-    public function getTeaser(bool $asPlaintext = false) : ?string {
+    public function getTeaser(bool $asPlaintext = false) : ?string
+    {
         if($asPlaintext) {
             return strip_tags($this->getValue("teaser"));
         }
@@ -129,7 +151,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt den Teaser des Produkts.
      */
-    public function setTeaser(mixed $value) : self {
+    public function setTeaser(mixed $value) : self
+    {
         $this->setValue("teaser", $value);
         return $this;
     }
@@ -143,7 +166,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt die Beschreibung des Produkts zurück. Wenn $asPlaintext true ist, wird die Beschreibung als reiner Text ohne HTML-Tags zurückgegeben.
      */
-    public function getDescription(bool $asPlaintext = false) : ?string {
+    public function getDescription(bool $asPlaintext = false) : ?string
+    {
         if($asPlaintext) {
             return strip_tags($this->getValue("description"));
         }
@@ -157,7 +181,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt die Beschreibung des Produkts.
      */
-    public function setDescription(mixed $value) : self {
+    public function setDescription(mixed $value) : self
+    {
         $this->setValue("description", $value);
         return $this;
     }
@@ -171,7 +196,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt zurück, ob das Produkt neu ist. Wenn $asBool true ist, wird der Wert als bool zurückgegeben.
      */
-    public function getIsNew(bool $asBool = false) : mixed {
+    public function getIsNew(bool $asBool = false) : mixed
+    {
         if($asBool) {
             return (bool) $this->getValue("is_new");
         }
@@ -185,7 +211,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt, ob das Produkt neu ist.
      */
-    public function setIsNew(int $value = 1) : self {
+    public function setIsNew(int $value = 1) : self
+    {
         $this->setValue("is_new", $value);
         return $this;
     }
@@ -198,7 +225,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt die Reihenfolge des Produkts zurück.
      */
-    public function getPrio() : ?int {
+    public function getPrio() : ?int
+    {
         return $this->getValue("prio");
     }
 
@@ -209,7 +237,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt die Reihenfolge des Produkts.
      */
-    public function setPrio(int $value) : self {
+    public function setPrio(int $value) : self
+    {
         $this->setValue("prio", $value);
         return $this;
     }
@@ -222,7 +251,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt die IDs der Varianten des Produkts zurück.
      */
-    public function getVariantIds() : ?rex_yform_manager_collection {
+    public function getVariantIds() : ?rex_yform_manager_collection
+    {
         return $this->getRelatedCollection("variant_ids");
     }
 
@@ -234,7 +264,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt das Datum der letzten Änderung des Produkts zurück.
      */
-    public function getUpdatedate() : ?string {
+    public function getUpdatedate() : ?string
+    {
         return $this->getValue("updatedate");
     }
 
@@ -245,7 +276,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt das Datum der letzten Änderung des Produkts.
      */
-    public function setUpdatedate(string $value) : self {
+    public function setUpdatedate(string $value) : self
+    {
         $this->setValue("updatedate", $value);
         return $this;
     }
@@ -258,7 +290,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Gibt das Erstellungsdatum des Produkts zurück.
      */
-    public function getCreatedate() : ?string {
+    public function getCreatedate() : ?string
+    {
         return $this->getValue("createdate");
     }
 
@@ -269,7 +302,8 @@ class product extends \rex_yform_manager_dataset {
      *
      * Setzt das Erstellungsdatum des Produkts.
      */
-    public function setCreatedate(string $value) : self {
+    public function setCreatedate(string $value) : self
+    {
         $this->setValue("createdate", $value);
         return $this;
     }
@@ -293,4 +327,4 @@ class product extends \rex_yform_manager_dataset {
         return '';
     }
 
-}					
+}
