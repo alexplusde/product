@@ -27,6 +27,11 @@ Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_product` zu.
 $products_all = product::query()->find(); // Alle Produkte
 
 foreach($products as $product) {
+    
+    if($product->getStatus() < 1) {
+        continue;
+    }
+    
     $category = $product->getCategory();
     $variants = $product->getVariants();
 
@@ -64,6 +69,8 @@ $products_online = product::query()->where('status', 1)->order('name')->find(); 
 
 ## Nutzung im Backend: Die Produkteverwaltung
 
+Der Menüpunkt `📦 Produkte` ist im Hauptmenü zwischen `Struktur` und `Medienpool`.
+
 ### Die Tabelle `rex_product_category`
 
 In der Kategorien-Tabelle werden einzelne Kategorien erstellt. Erweitere das Formular im Backend um eigene Felder über den YForm Table Manager, z.B. Icons, Bilder, zusätzliche Beschreibungen, etc.
@@ -80,6 +87,8 @@ In der Varianten-Tabelle können einzelne Varianten von Produkten erstellt werde
 
 Für Kategorien und Produkte können passende URL-Profile angelegt werden, sodass die Generierung von Kategorie- oder Produktdetailseiten automatisiert werden.
 
+Wenn das URL-Addon installiert und aktiviert ist, wird bei der Installation des Addons `product` automatisch ein URL-Profil `product-id` und ein URL-Profil `product-category-id` angelegt. Dieses Profil wird für die Generierung von Produktdetailseiten verwendet.
+
 In diesem Beispiel wird ein Profil mit dem Schlüssel `product-id` vorausgesetzt. Nutze folgenden Code in der Template- oder Modulausgabe.
 
 ```php
@@ -91,17 +100,17 @@ if ($manager) {
     $product = product::get($manager->getDatasetId());
     if ($product) {
         // Detailseite des Produkts
-        dump($movie);
+        dump($product);
     }
 } else {
     $products = product::query()->find();
-    if (count($products_all)) {
+    if (count($products)) {
         // Übersichtsseite aller Produkte
         foreach ($products as $product) {
             if($product->getStatus() < 1) {
                 continue;
             }
-            echo '<a href="' . rex_getUrl('', '', ['product-id' => $product->getId()]) . '">' . $product->getName() . '</a>';
+            echo '<a href="' . $product->getUrl() . '">' . $product->getName() . '</a>';
         }
     }
 }
