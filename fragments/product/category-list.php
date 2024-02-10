@@ -17,8 +17,8 @@
 		<div class="col-sm-6 col-md-4 col-lg-3">
 			<div class="card">
 				<a href="<?=  $product->getUrl() ?>">
-					<?php if (rex_media::get($product->getImage())) { ?>
-					<img src="<?= rex_media::get($product->getImage()); ?>"
+					<?php if ($product->getImage()) { ?>
+					<img src="<?= rex_media::get($product->getImage())->getUrl(); ?>"
 						class="card-img-top">
 					<?php } ?>
 				</a>
