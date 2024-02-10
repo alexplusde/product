@@ -13,7 +13,7 @@ Mit diesem Addon können Produkte anhand von YForm und YOrm im Backend verwaltet
 
 ## Installation
 
-Im REDAXO-Installer das Addon `product` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Produkte` sichtbar.
+Im REDAXO-Installer das Addon `product` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Produkte`.
 
 ## Nutzung im Frontend
 
@@ -66,6 +66,8 @@ Um zu filtern oder zu sortieren, nutze die YOrm-spezifischen Query-Methoden:
 ```php
 $products_online = product::query()->where('status', 1)->order('name')->find(); // Alle Produkte
 ```
+
+Weitere Beispiele befinden sich in der Doku.
 
 ## Nutzung im Backend: Die Produkteverwaltung
 
