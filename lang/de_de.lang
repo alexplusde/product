@@ -17,8 +17,8 @@ product_is_new = Neu
 product_name = Name
 product_prio = Reihenfolge
 product_status = Status
-product_status_online = Veröffentlicht
-product_status_offline = Entwurf
+product_status_online = 🟢 Veröffentlicht
+product_status_offline = ⭕ Entwurf
 product_teaser = Teaser
 product_updatedate = Geändert am...
 product_variant_ids = Varianten
@@ -28,8 +28,8 @@ product_variant_name =  Name
 product_variant_prio = Reihenfolge
 product_variant_product_id = Produkt
 product_variant_status = Status
-product_variant_status_online = Veröffentlicht
-product_variant_status_offline = Entwurf
+product_variant_status_online = 🟢 Veröffentlicht
+product_variant_status_offline = ⭕ Entwurf
 
 product_editor = WYSIWYG-Editor
 
@@ -42,3 +42,5 @@ product_docs_product_category = Kategorien
 product_docs_product_variant = Varianten
 product_docs_url = URL
 product_docs_settings = Einstellungen
+product_docs_erweitern = Erweitern
+product_docs_import_export = Import / Export
