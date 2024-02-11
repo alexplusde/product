@@ -86,6 +86,28 @@ Weitere Beispiele befinden sich in der Doku.
 
 Der Menüpunkt `📦 Produkte` ist im Hauptmenü zwischen `Struktur` und `Medienpool`.
 
+### Kategorien
+
+![blaupause test_redaxo_index php_page=product_category](https://github.com/alexplusde/product/assets/3855487/4053b1e8-3a2a-4ad6-b6a7-55f07370be31)
+
+### Produkte
+
+![blaupause test_redaxo_index php_page=product_product](https://github.com/alexplusde/product/assets/3855487/a7a68a2e-9d89-4c23-bbb0-614e13cf52d6)
+
+### Produkte-Formular
+
+![blaupause test_redaxo_index php_page=product_product table_name=rex_product rex_yform_manager_popup=0 _csrf_token=pb0HabB-gUvMON0oFtPNPswo61IjYmfLq_LC87nsBAg data_id=1 func=edit (2)](https://github.com/alexplusde/product/assets/3855487/ee6279f6-158b-4d4e-acb6-6efc521aec6a)
+
+
+### Varianten
+
+![blaupause test_redaxo_index php_page=product_variant](https://github.com/alexplusde/product/assets/3855487/a51cef9d-aad4-428a-a621-879ffcb6c7b8)
+
+### Einstellungen
+
+![blaupause test_redaxo_index php_page=product_settings](https://github.com/alexplusde/product/assets/3855487/19bab447-1ff8-4132-bf67-213775749337)
+
+
 ## Import / Export
 
 Produkte basiert auf YForm, nutze die üblichen Import/Export-Funktionen als CSV - oder schreibe ein eigenes Import-Script mit YOrm.
