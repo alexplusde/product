@@ -4,7 +4,7 @@ Diese Klasse erweitert `rex_yform_manager_dataset` und stellt Methoden zur Verf�
 
 > Es werden nachfolgend zur die durch dieses Addon ergänzte Methoden beschrieben. Lerne mehr über YOrm und den Methoden für Querys, Datasets und Collections in der [YOrm Doku](https://github.com/yakamara/yform/blob/master/docs/04_yorm.md)
 
-## Beispielsausgabe
+## Beispiele
 
 `Product` kommt mit einem mitgelieferten Standard-Fragment, das die Kategorien auflistet. Dieses Fragment kann in einem Modul oder einer Template-Ausgabe verwendet werden.
 

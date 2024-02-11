@@ -1,19 +1,21 @@
 # Einstellungen
 
+## Fallback-Bild
+
+Bild, das angezeigt wird, wenn kein Bild für das Produkt oder die Produktvariante hinterlegt ist.
+
+## Eigene Model-Klasse verwenden?
+
+Standard: Nein. Wenn Ja, dann kann eine eigene Model-Klasse für Produkte und Produktvarianten verwendet werden.
+
+Die Klasse müssen die Klassen `product_category`, `product` bzw. `product_variant` erweitern, siehe [Erweitern](07_erweitern.md) und bspw. in der eigenen `boot.php` des Projekts registriert werden.
+
 ## WYSIWYG-Editor
 
-WYSIWYG-Editor festlegen, der für die Bearbeitung von Mitarbeiterinformationen (Vita, Inhalt) verwendet wird.
+WYSIWYG-Editor festlegen, der für die Bearbeitung von Produktinformationen verwendet wird.
 
-Beispiel:
+Beispiel für den CKE5-Editor in Deutsch mit dem Profil "default":
 
 ```html
 class="form-control cke5-editor" data-lang="de" data-profile="default"
 ```
-
-## Standard-Unternehmensname
-
-Wenn kein Unternehmensname für einen Mitarbeiter angegeben ist, können Sie einen Standard-Unternehmensnamen festlegen, der stattdessen angezeigt wird.
-
-## Standard-Unternehmens-URL
-
-Ähnlich wie beim Standard-Unternehmensnamen lässt sich auch eine Standard-URL für das Unternehmen festlegen, wenn keine URL für einen Mitarbeiter angegeben ist.

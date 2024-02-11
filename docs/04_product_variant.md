@@ -4,6 +4,28 @@ Diese Klasse erweitert `rex_yform_manager_dataset` und stellt Methoden zur Verf�
 
 > Es werden nachfolgend zur die durch dieses Addon ergänzte Methoden beschrieben. Lerne mehr über YOrm und den Methoden für Querys, Datasets und Collections in der [YOrm Doku](https://github.com/yakamara/yform/blob/master/docs/04_yorm.md)
 
+## Beispiele
+
+### Produktvarianten eines Produkts abfragen
+
+```php
+$product = product::get(1);
+$variants = $product->getVariants(); // Gibt alle Produktvarianten des Produkts zurück.
+
+foreach ($variants as $variant) {
+    echo $variant->getName();
+}
+```
+
+### Produktvariante erstellen
+
+```php
+$variant = product_variant::create();
+$variant->setName("Neue Variante");
+$variant->setProduct(1); // Produkt-ID
+$variant->save();
+```
+
 ## Methoden
 
 ### `getName()`

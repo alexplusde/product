@@ -88,11 +88,11 @@ class product extends \rex_yform_manager_dataset
     /**
      * @api
      * @param bool $asMedia Wenn true, wird das Bild als rex_media Objekt zurückgegeben.
-     * @return string|null
+     * @return mixed
      *
      * Gibt das Bild des Produkts zurück. Wenn $asMedia true ist, wird das Bild als rex_media Objekt zurückgegeben.
      */
-    public function getImage(bool $asMedia = false) : ?string
+    public function getImage(bool $asMedia = false) : mixed
     {
         $image = $this->getValue("image");
         $default_image = rex_config::get('product', 'default_thumbnail');
