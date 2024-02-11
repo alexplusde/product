@@ -33,6 +33,8 @@ Im Installationsprozess
 
 ## Code-Beispiele für die Modulausgabe
 
+![blaupause test_](https://github.com/alexplusde/product/assets/3855487/be69605b-8c11-481b-a594-fa5ef530de65)
+
 ```php
 $products = product::query()->find(); // Alle Produkte
 
@@ -98,7 +100,6 @@ Der Menüpunkt `📦 Produkte` ist im Hauptmenü zwischen `Struktur` und `Medien
 
 ![blaupause test_redaxo_index php_page=product_product table_name=rex_product rex_yform_manager_popup=0 _csrf_token=pb0HabB-gUvMON0oFtPNPswo61IjYmfLq_LC87nsBAg data_id=1 func=edit (2)](https://github.com/alexplusde/product/assets/3855487/ee6279f6-158b-4d4e-acb6-6efc521aec6a)
 
-
 ### Varianten
 
 ![blaupause test_redaxo_index php_page=product_variant](https://github.com/alexplusde/product/assets/3855487/a51cef9d-aad4-428a-a621-879ffcb6c7b8)
@@ -106,7 +107,6 @@ Der Menüpunkt `📦 Produkte` ist im Hauptmenü zwischen `Struktur` und `Medien
 ### Einstellungen
 
 ![blaupause test_redaxo_index php_page=product_settings](https://github.com/alexplusde/product/assets/3855487/19bab447-1ff8-4132-bf67-213775749337)
-
 
 ## Import / Export
 
