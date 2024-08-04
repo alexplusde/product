@@ -35,12 +35,12 @@ page:
         settings:
             title: translate:product_settings
             icon: rex-icon fa-gear
-            itemclass: pull-right
+            itemClass: pull-right
             perm: admin
         docs:
             title: translate:product_docs
             icon: rex-icon fa-info-circle
-            itemclass: pull-right
+            itemClass: pull-right
             perm: product[docs]
 
 default_config:
