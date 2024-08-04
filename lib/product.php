@@ -122,7 +122,7 @@ class product extends \rex_yform_manager_dataset
     public function setImage(string $filename) : self
     {
         if(rex_media::get($filename)) {
-            $this->getValue("image", $filename);
+            $this->setValue("image", $filename);
         }
         return $this;
     }
